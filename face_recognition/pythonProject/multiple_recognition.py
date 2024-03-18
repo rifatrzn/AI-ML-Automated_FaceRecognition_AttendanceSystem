@@ -24,7 +24,7 @@ transform = transforms.Compose([
 ])
 
 # Load the stored embeddings and names from the 'students.json' file
-with open('multi_students.json', 'r') as f:
+with open('students_embeddings.json', 'r') as f:
     students_json = json.load(f)
 
 # Create a dictionary where each key is a person's name and the value is their list of embeddings
