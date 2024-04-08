@@ -30,6 +30,13 @@ with open('students_embeddings.json', 'r') as f:
 # Create a dictionary where each key is a person's name and the value is their list of embeddings
 embeddings_dict = {name: np.array(students_json[name], dtype=np.float32) for name in students_json}
 
+# def dynamic_threshold_for_recognition(embeddings):
+#     # Calculate the mean distance and standard deviation among embeddings
+#     distances = np.linalg.norm(embeddings - np.mean(embeddings, axis=0), axis=1)
+#     return np.mean(distances) + np.std(distances)
+
+
+
 def recognize(captured_embedding):
     """
     Recognizes a person based on a captured embedding by comparing it against stored embeddings.
