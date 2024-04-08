@@ -1,4 +1,4 @@
-# Enhanced Face Recognition System for Classroom Attendance
+# Automaed Face Recognition System for Attendance
 
 #Project Overview
 This project aims to develop an advanced face recognition system designed to streamline the process of recording attendance in educational settings. Leveraging the power of facenet_pytorch for generating face embeddings and MTCNN for accurate face detection, this system introduces multiple embeddings per student to enhance recognition accuracy under various conditions. Furthermore, it utilizes JSON for efficient data storage, making it a robust solution for managing classroom attendance.
