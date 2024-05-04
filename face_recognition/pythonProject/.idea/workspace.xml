@@ -18,23 +18,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.face_embeddings.executor": "Run",
-    "Python.face_recognition.executor": "Run",
-    "Python.multiple_embeddings.executor": "Run",
-    "Python.multiple_recognition.executor": "Run",
-    "Python.recognition_gui.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Study/INDEPENDENT/FinalProject/face_recognition/pythonProject"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.face_embeddings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.face_recognition.executor&quot;: &quot;Run&quot;,
+    &quot;Python.multiple_embeddings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.multiple_recognition.executor&quot;: &quot;Run&quot;,
+    &quot;Python.recognition_gui.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Study/INDEPENDENT/FinalProject/face_recognition/pythonProject&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
       </set>
     </attachedChunks>
   </component>

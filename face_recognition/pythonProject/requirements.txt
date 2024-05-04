@@ -1,4 +1,12 @@
 opencv-python~=4.9.0.80
-numpy~=1.26.4
+numpy
 pillow~=10.2.0
 torchvision~=0.17.0
+opencv-python
+numpy
+facenet-pytorch>=2.5
+Pillow
+torchvision
+scikit-learn
+tk
+ttkthemes

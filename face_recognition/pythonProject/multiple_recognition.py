@@ -53,6 +53,8 @@ def recognize(captured_embedding):
 
     # Iterate through each stored embedding to find the closest match
     for name, embeddings in embeddings_dict.items():
+        if embeddings.size == 0:
+            continue
         distances = np.linalg.norm(embeddings - captured_embedding, axis=1)
         person_min_distance = np.min(distances)
         if person_min_distance < min_distance:
@@ -75,10 +77,10 @@ while True:
         img = Image.fromarray(rgb)
         boxes, _ = mtcnn.detect(img)
 
-        if boxes is not None:
+        if boxes is not None and len(boxes) > 0:
             for box in boxes:
-                box = [int(b) for b in box]
-                face = img.crop(box)
+                box = [max(0, int(b)) for b in box]  # Ensure coordinates are within the frame
+                face = img.crop((box[0], box[1], box[2], box[3]))
                 face_tensor = transform(face)  # Apply preprocessing transformations
                 embedding = resnet(face_tensor.unsqueeze(0)).detach().numpy()
                 name = recognize(embedding)
