@@ -34,6 +34,10 @@ root = tk.Tk()
 root.title("Face Recognition Attendance System")
 root.geometry("800x600")  # Set a fixed size for the window
 
+def close_app():
+    if messagebox.askokcancel("Quit", "Do you want to exit?"):
+        root.destroy()
+
 # Custom font
 customFont = tkFont.Font(family="Helvetica", size=12)
 
@@ -62,21 +66,13 @@ controls_frame = tk.Frame(root, padx=10, pady=10, bg="#333")
 controls_frame.pack(fill=tk.X)
 
 # Listbox to display attendance
-listbox = tk.Listbox(root, width=50, height=10, font=customFont)
+listbox = tk.Listbox(root, width=50, height=10, font='Helvetica 12')
 listbox.pack(pady=20)
-
-
 
 cap = cv2.VideoCapture(0)
 
 # Function to close the GUI cleanly
-def close_app():
-    if messagebox.askokcancel("Quit", "Do you want to exit?"):
-        root.destroy()
 
-# Create an Exit button and pack it into the GUI
-exit_btn = ttk.Button(root, text="Exit", command=close_app, style='TButton')
-exit_btn.pack(side=tk.RIGHT, padx=10, pady=10)
 
 global photo_image
 photo_image = None
@@ -154,7 +150,7 @@ print("Capturing new student embedding...")
 
 def recognize_face(embedding):
     """ Recognize face by finding the closest embedding in the database """
-    global attendance  # Access the global attendance dictionary
+    # global attendance  # Access the global attendance dictionary
     min_distance = float('inf')
     recognized_name = 'Unknown'
     for name, embeddings in students_embeddings.items():
@@ -162,7 +158,7 @@ def recognize_face(embedding):
         if distances.size > 0:
             closest_distance = np.min(distances)
             if closest_distance < min_distance and closest_distance < 0.8:  # Threshold for recognition
-                min_distance = closest_distance
+                # min_distance = closest_distance
                 recognized_name = name
                 # Update the attendance dictionary when a face is recognized
                 attendance[name] = 'Present'
@@ -191,7 +187,7 @@ def delete_student_embedding():
 
 
 def update_video_feed():
-    global photo_image
+
     """ Update the video feed displayed on the GUI """
     try:
         ret, frame = cap.read()
@@ -204,11 +200,11 @@ def update_video_feed():
         boxes, _ = mtcnn.detect(img_pil)
         if boxes is not None:
             for box in boxes:
-                face = img_pil.crop(box)
+                x1, y1, x2, y2 = [int(b) for b in box]
+                face = img_pil.crop((x1, y1, x2, y2))
                 face_tensor = transform(face).unsqueeze(0)
                 embedding = resnet(face_tensor).detach().numpy().flatten()
                 name = recognize_face(embedding)
-                x1, y1, x2, y2 = [int(b) for b in box]
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 cv2.putText(frame, name, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
                 if name not in listbox.get(0, tk.END):
@@ -219,8 +215,12 @@ def update_video_feed():
         label.config(image=photo_image)
         label.image = photo_image  # This line is likely unnecessary since we're now using a global variable
         root.after(100, update_video_feed)  # Adjusted for lower CPU usage
+
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred in the video feed update: {e}")
+
+
+
 
 style = ttk.Style()
 style.configure('TButton', font=('Helvetica', 12, 'bold'), borderwidth='4')
@@ -251,6 +251,7 @@ footer_label.pack()
 # Start the GUI event loop
 update_video_feed()
 root.mainloop()
+
 
 
 # Clean up on closing the GUI
